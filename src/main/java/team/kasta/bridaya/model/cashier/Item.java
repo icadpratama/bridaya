@@ -1,6 +1,10 @@
 package team.kasta.bridaya.model.cashier;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import team.kasta.bridaya.model.audit.UserDateAudit;
+import team.kasta.bridaya.model.common.Business;
 
 import javax.persistence.*;
 
@@ -23,6 +27,12 @@ public class Item extends UserDateAudit {
 
     @Column(name = "description")
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "business_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Business business;
 
     public Long getId() {
         return id;
@@ -62,5 +72,13 @@ public class Item extends UserDateAudit {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
     }
 }
