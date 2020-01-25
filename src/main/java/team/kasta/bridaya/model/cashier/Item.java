@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import team.kasta.bridaya.model.audit.UserDateAudit;
 import team.kasta.bridaya.model.common.Business;
+import team.kasta.bridaya.model.common.Image;
 
 import javax.persistence.*;
 
@@ -33,6 +34,17 @@ public class Item extends UserDateAudit {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Business business;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "image_id")
+    private Image image;
+
+    public Item(String name, Long price, Boolean status, String description) {
+        this.name = name;
+        this.price = price;
+        this.status = status;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -80,5 +92,13 @@ public class Item extends UserDateAudit {
 
     public void setBusiness(Business business) {
         this.business = business;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
