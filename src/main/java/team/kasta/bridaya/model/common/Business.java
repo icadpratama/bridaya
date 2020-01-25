@@ -23,6 +23,13 @@ public class Business {
     @Column(name = "email")
     private String email;
 
+    public Business(String name, String address, String contactNumber, String email) {
+        this.name = name;
+        this.address = address;
+        this.contactNumber = contactNumber;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }
