@@ -40,6 +40,28 @@ public class BridayaApplication {
 				.apiInfo(apiInfo()).directModelSubstitute(Timestamp.class, Long.class);
 	}
 
+	@Bean
+	public Docket cashier() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("team.kasta.bridaya.controller.cashier"))
+				.paths(PathSelectors.any())
+				.build()
+				.groupName("Personal Cashier")
+				.apiInfo(apiInfo()).directModelSubstitute(Timestamp.class, Long.class);
+	}
+
+	@Bean
+	public Docket common() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("team.kasta.bridaya.controller.common"))
+				.paths(PathSelectors.any())
+				.build()
+				.groupName("Merchant")
+				.apiInfo(apiInfo()).directModelSubstitute(Timestamp.class, Long.class);
+	}
+
 	private ApiInfo apiInfo() {
 		return new ApiInfo(
 				"briDaya",
