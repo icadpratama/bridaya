@@ -41,3 +41,5 @@ CREATE TABLE images(
     CONSTRAINT images_pk PRIMARY KEY (image_id),
     CONSTRAINT images_user_id_fk FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
+CREATE TABLE merchants();

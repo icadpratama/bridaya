@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Business {
+public class Merchant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class Business {
     @Column(name = "email")
     private String email;
 
-    public Business(String name, String address, String contactNumber, String email) {
+    public Merchant(String name, String address, String contactNumber, String email) {
         this.name = name;
         this.address = address;
         this.contactNumber = contactNumber;

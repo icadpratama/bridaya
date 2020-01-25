@@ -2,7 +2,7 @@ package team.kasta.bridaya.payload.request;
 
 import javax.validation.constraints.NotBlank;
 
-public class BusinessRequest {
+public class MerchantRequest {
 
     @NotBlank(message = "Name can't be blank")
     private String name;

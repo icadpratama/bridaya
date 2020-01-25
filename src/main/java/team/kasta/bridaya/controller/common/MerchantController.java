@@ -3,28 +3,28 @@ package team.kasta.bridaya.controller.common;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import team.kasta.bridaya.model.common.Business;
-import team.kasta.bridaya.payload.request.BusinessRequest;
+import team.kasta.bridaya.model.common.Merchant;
+import team.kasta.bridaya.payload.request.MerchantRequest;
 import team.kasta.bridaya.payload.response.BridayaResponse;
-import team.kasta.bridaya.service.BusinessService;
+import team.kasta.bridaya.service.MerchantService;
 
 import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/business")
+@RequestMapping("/merchants")
 @CrossOrigin("*")
-public class BusinessController {
-    private final BusinessService businessService;
+public class MerchantController {
+    private final MerchantService merchantService;
 
-    public BusinessController(BusinessService businessService) {
-        this.businessService = businessService;
+    public MerchantController(MerchantService merchantService) {
+        this.merchantService = merchantService;
     }
 
     @PostMapping
-    public ResponseEntity addBusiness(@Valid @RequestBody BusinessRequest request){
-        Business data = new Business(request.getName(), request.getAddress(), request.getContactNumber(), request.getEmail());
-        Business result = businessService.createBusiness(data);
+    public ResponseEntity addBusiness(@Valid @RequestBody MerchantRequest request){
+        Merchant data = new Merchant(request.getName(), request.getAddress(), request.getContactNumber(), request.getEmail());
+        Merchant result = merchantService.createBusiness(data);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/business/{name}")
