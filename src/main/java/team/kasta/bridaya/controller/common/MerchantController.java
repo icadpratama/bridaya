@@ -22,7 +22,7 @@ public class MerchantController {
     }
 
     @PostMapping
-    public ResponseEntity addBusiness(@Valid @RequestBody MerchantRequest request){
+    public ResponseEntity addMerchant(@Valid @RequestBody MerchantRequest request){
         Merchant data = new Merchant(request.getName(), request.getAddress(), request.getContactNumber(), request.getEmail());
         Merchant result = merchantService.createBusiness(data);
 
