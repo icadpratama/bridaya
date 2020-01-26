@@ -42,4 +42,44 @@ CREATE TABLE images(
     CONSTRAINT images_user_id_fk FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE merchants();
+CREATE TABLE merchants(
+    merchant_id BIGSERIAL,
+    name VARCHAR(100),
+    address VARCHAR(255),
+    contact_number VARCHAR(14),
+    email VARCHAR(100),
+    image_id BIGINT,
+    user_id BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by BIGINT DEFAULT NULL,
+    updated_by BIGINT DEFAULT NULL,
+    CONSTRAINT merchants_pk PRIMARY KEY (merchant_id),
+    CONSTRAINT merchants_user_id_fk FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT merchants_image_id_fk FOREIGN KEY (image_id) REFERENCES images(image_id)
+);
+
+CREATE TABLE items(
+    item_id BIGSERIAL,
+    name VARCHAR(100),
+    price BIGINT,
+    status VARCHAR(15),
+    description VARCHAR(255),
+    image_id BIGINT,
+    user_id BIGINT,
+    merchant_id BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by BIGINT DEFAULT NULL,
+    updated_by BIGINT DEFAULT NULL,
+    CONSTRAINT items_pk PRIMARY KEY (item_id),
+    CONSTRAINT items_user_id_fk FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT items_image_id_fk FOREIGN KEY (image_id) REFERENCES images(image_id),
+    CONSTRAINT items_merchant_id_fk FOREIGN KEY (merchant_id) REFERENCES merchants(merchant_id)
+);
+
+CREATE TABLE orders(
+    order_id BIGSERIAL,
+    amount SMALLINT,
+    total BIGINT
+);

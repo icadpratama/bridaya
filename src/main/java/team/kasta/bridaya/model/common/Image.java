@@ -31,6 +31,10 @@ public class Image extends UserDateAudit {
     @JsonIgnore
     private User user;
 
+    @OneToOne(mappedBy = "image")
+    @JsonIgnore
+    private Merchant merchant;
+
     public Image() {
     }
 
@@ -87,5 +91,21 @@ public class Image extends UserDateAudit {
 
     public void setMember(User user) {
         this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Merchant getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 }

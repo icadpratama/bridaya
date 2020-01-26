@@ -1,10 +1,16 @@
 package team.kasta.bridaya.model.common;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import team.kasta.bridaya.model.authentication.User;
+import team.kasta.bridaya.model.cashier.Item;
 
+import javax.persistence.*;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+@Entity
+@Table(name = "merchants")
 public class Merchant {
 
     @Id
@@ -23,11 +29,33 @@ public class Merchant {
     @Column(name = "email")
     private String email;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Image image;
+
+    @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL)
+    private Set<Item> items;
+
     public Merchant(String name, String address, String contactNumber, String email) {
         this.name = name;
         this.address = address;
         this.contactNumber = contactNumber;
         this.email = email;
+    }
+
+    public Merchant(String name, String address, String contactNumber, String email, User user, Image image, Item... items) {
+        this.name = name;
+        this.address = address;
+        this.contactNumber = contactNumber;
+        this.email = email;
+        this.user = user;
+        this.image = image;
+        this.items = Stream.of(items).collect(Collectors.toSet());
+        this.items.forEach(x -> x.setMerchant(this));
     }
 
     public Long getId() {
@@ -68,5 +96,29 @@ public class Merchant {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
     }
 }

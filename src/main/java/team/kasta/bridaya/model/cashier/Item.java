@@ -30,7 +30,7 @@ public class Item extends UserDateAudit {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "business_id", nullable = false)
+    @JoinColumn(name = "merchant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Merchant merchant;

@@ -2,6 +2,7 @@ package team.kasta.bridaya.model.authentication;
 
 import team.kasta.bridaya.model.audit.DateAudit;
 import team.kasta.bridaya.model.common.Image;
+import team.kasta.bridaya.model.common.Merchant;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -47,6 +48,9 @@ public class User extends DateAudit {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id", referencedColumnName = "image_id")
     private Image image;
+
+    @OneToOne(mappedBy = "user")
+    private Merchant merchant;
 
     public User() {
     }
@@ -120,6 +124,14 @@ public class User extends DateAudit {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public Merchant getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 }
 
