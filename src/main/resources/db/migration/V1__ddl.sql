@@ -42,6 +42,7 @@ CREATE TABLE images(
     CONSTRAINT images_user_id_fk FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+-- Personal Cashier
 CREATE TABLE merchants(
     merchant_id BIGSERIAL,
     name VARCHAR(100),
