@@ -1,6 +1,7 @@
 package team.kasta.bridaya.model.authentication;
 
 import team.kasta.bridaya.model.audit.DateAudit;
+import team.kasta.bridaya.model.cashier.Customer;
 import team.kasta.bridaya.model.common.Image;
 import team.kasta.bridaya.model.common.Merchant;
 
@@ -51,6 +52,9 @@ public class User extends DateAudit {
 
     @OneToOne(mappedBy = "user")
     private Merchant merchant;
+
+    @OneToOne(mappedBy = "user")
+    private Customer customer;
 
     public User() {
     }

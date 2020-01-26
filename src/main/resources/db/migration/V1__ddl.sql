@@ -78,8 +78,41 @@ CREATE TABLE items(
     CONSTRAINT items_merchant_id_fk FOREIGN KEY (merchant_id) REFERENCES merchants(merchant_id)
 );
 
+CREATE TABLE customers(
+    customer_id BIGSERIAL,
+    user_id BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT customers_pk PRIMARY KEY (customer_id),
+    CONSTRAINT customer_user_id_fk FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
 CREATE TABLE orders(
     order_id BIGSERIAL,
-    amount SMALLINT,
-    total BIGINT
+    order_datetime TIMESTAMP,
+    order_status VARCHAR(9),
+    customer_id BIGINT,
+    merchant_id BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by BIGINT DEFAULT NULL,
+    updated_by BIGINT DEFAULT NULL,
+    CONSTRAINT orders_pk PRIMARY KEY (order_id),
+    CONSTRAINT orders_cust_id_fk FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+    CONSTRAINT orders_merchant_id_fk FOREIGN KEY (merchant_id) REFERENCES merchants(merchant_id)
+);
+
+CREATE TABLE order_items(
+    order_id BIGINT,
+    line_item_id BIGSERIAL,
+    item_id BIGINT,
+    item_price BIGINT,
+    quantity SMALLINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by BIGINT DEFAULT NULL,
+    updated_by BIGINT DEFAULT NULL,
+    CONSTRAINT order_items_pk PRIMARY KEY (order_id, line_item_id),
+    CONSTRAINT oi_orders_id_fk FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    CONSTRAINT oi_item_id_fk FOREIGN KEY (item_id) REFERENCES items(item_id)
 );
