@@ -1,6 +1,5 @@
 package team.kasta.bridaya.model.common;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import team.kasta.bridaya.model.authentication.User;
 import team.kasta.bridaya.model.cashier.Item;
 

@@ -1,10 +1,14 @@
 package team.kasta.bridaya.service.impl;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import team.kasta.bridaya.model.cashier.Item;
 import team.kasta.bridaya.repository.ItemRepository;
+import team.kasta.bridaya.security.UserPrincipal;
 import team.kasta.bridaya.service.ItemService;
 
+import java.awt.print.Pageable;
 import java.util.Optional;
 
 @Service
@@ -26,7 +30,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Optional<Item> itemListByBusinessId(Long id) {
-        return Optional.empty();
+    public Optional<Item> itemListByMerchantId(Long id, UserPrincipal currentUser) {
+        // page, size, Direction
+        return itemRepository.findById(id);
     }
 }
