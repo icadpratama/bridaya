@@ -15,18 +15,19 @@ public class Item extends UserDateAudit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "item_id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "item_name")
     private String name;
 
-    @Column(name = "price")
+    @Column(name = "item_price")
     private Long price;
 
-    @Column(name = "status")
+    @Column(name = "item_status")
     private Boolean status;
 
-    @Column(name = "description")
+    @Column(name = "item_description")
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

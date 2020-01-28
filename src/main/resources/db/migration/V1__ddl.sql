@@ -62,10 +62,10 @@ CREATE TABLE merchants(
 
 CREATE TABLE items(
     item_id BIGSERIAL,
-    name VARCHAR(100),
-    price BIGINT,
-    status VARCHAR(15),
-    description VARCHAR(255),
+    item_name VARCHAR(100),
+    item_price BIGINT,
+    item_status VARCHAR(15),
+    item_description VARCHAR(255),
     image_id BIGINT,
     user_id BIGINT,
     merchant_id BIGINT,

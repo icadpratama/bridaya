@@ -1,5 +1,7 @@
 package team.kasta.bridaya.payload.request;
 
+import team.kasta.bridaya.util.RoleName;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -22,6 +24,8 @@ public class SignUpRequest {
     @NotBlank(message = "password can't be blank")
     @Size(min = 6, max = 20, message = "password min length is 6 and max length is 20")
     private String password;
+
+    private RoleName role;
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -53,5 +57,13 @@ public class SignUpRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public RoleName getRole() {
+        return role;
+    }
+
+    public void setRole(RoleName role) {
+        this.role = role;
     }
 }

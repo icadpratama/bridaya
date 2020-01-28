@@ -76,7 +76,7 @@ public class AuthenticationController {
         // Creating user's account
         User user = new User(signUpRequest.getUsername(), signUpRequest.getEmail(), signUpRequest.getPhoneNumber(), signUpRequest.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Role userRole = roleService.setRole(RoleName.SUPERADMIN)
+        Role userRole = roleService.setRole(signUpRequest.getRole())
                 .orElseThrow(() -> new AppException("User Role not set."));
         user.setRoles(Collections.singleton(userRole));
         User result = userService.crateUser(user);
