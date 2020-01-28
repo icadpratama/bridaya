@@ -27,14 +27,6 @@ public class Image extends UserDateAudit {
     @Column(name = "content_type")
     private String contentType;
 
-    @OneToOne(mappedBy = "image")
-    @JsonIgnore
-    private User user;
-
-    @OneToOne(mappedBy = "image")
-    @JsonIgnore
-    private Merchant merchant;
-
     public Image() {
     }
 
@@ -83,29 +75,5 @@ public class Image extends UserDateAudit {
 
     public void setContentType(String contentType) {
         this.contentType = contentType;
-    }
-
-    public User getUserr() {
-        return user;
-    }
-
-    public void setMember(User user) {
-        this.user = user;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Merchant getMerchant() {
-        return merchant;
-    }
-
-    public void setMerchant(Merchant merchant) {
-        this.merchant = merchant;
     }
 }

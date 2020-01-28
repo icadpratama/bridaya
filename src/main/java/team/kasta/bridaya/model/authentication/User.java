@@ -1,10 +1,6 @@
 package team.kasta.bridaya.model.authentication;
 
 import team.kasta.bridaya.model.audit.DateAudit;
-import team.kasta.bridaya.model.cashier.Customer;
-import team.kasta.bridaya.model.common.Image;
-import team.kasta.bridaya.model.common.Merchant;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +21,7 @@ public class User extends DateAudit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @Column(name = "username")
@@ -46,16 +43,6 @@ public class User extends DateAudit {
     )
     private Set<Role> roles = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_id", referencedColumnName = "image_id")
-    private Image image;
-
-    @OneToOne(mappedBy = "user")
-    private Merchant merchant;
-
-    @OneToOne(mappedBy = "user")
-    private Customer customer;
-
     public User() {
     }
 
@@ -64,14 +51,6 @@ public class User extends DateAudit {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
-    }
-
-    public User(String username, String email, String phoneNumber, String password, Image image) {
-        this.username = username;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.image = image;
     }
 
     public Long getId() {
@@ -120,22 +99,6 @@ public class User extends DateAudit {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    public Merchant getMerchant() {
-        return merchant;
-    }
-
-    public void setMerchant(Merchant merchant) {
-        this.merchant = merchant;
     }
 }
 

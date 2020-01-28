@@ -1,8 +1,10 @@
 package team.kasta.bridaya.util;
 
 public enum RoleName {
-    KASTA,
+    BENDARA,
     BRI,
     UMKM,
+    CUSTOMER,
+    MERCHANT,
     SUPERADMIN
 }

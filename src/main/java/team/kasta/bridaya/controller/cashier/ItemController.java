@@ -13,10 +13,9 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/items")
-@CrossOrigin("*")
 public class ItemController {
 
-    private ItemService itemService;
+    private final ItemService itemService;
 
     public ItemController(ItemService itemService) {
         this.itemService = itemService;

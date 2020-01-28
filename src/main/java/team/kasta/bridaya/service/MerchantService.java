@@ -4,5 +4,5 @@ import team.kasta.bridaya.model.common.Merchant;
 
 public interface MerchantService {
 
-    Merchant createBusiness(Merchant merchant);
+    Merchant createMerchant(Merchant merchant);
 }
